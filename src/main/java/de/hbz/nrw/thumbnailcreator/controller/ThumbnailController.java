@@ -32,7 +32,7 @@ public class ThumbnailController {
 	private FileSystemCache fileSystemCache;
 	private InMemoryCacheService inMemoryCache;
 	
-	@GetMapping
+	@GetMapping({"/", ""})
     public Object getThumbnailBySize(@RequestParam(required = false) String url,
                                      @RequestParam(defaultValue = "150") int size,
                                      @RequestParam(defaultValue = "false") boolean refresh) throws IOException, URISyntaxException {
@@ -41,7 +41,6 @@ public class ThumbnailController {
         }
 
     	URL resourceUrl = new URI(url.replace(" ", "%20")).toURL();
-        //URL resourceUrl = new URL(url);
         String host = resourceUrl.getHost();
         
         // check access permission
